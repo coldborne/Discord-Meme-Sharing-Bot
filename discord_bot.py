@@ -15,6 +15,25 @@ def handle_send_photo():
     return '', 200
 
 
+@flask_application.route('/get_channels', methods=['GET'])
+def get_channels():
+    guild = client.get_guild(discord_server_id)
+
+    if not guild:
+        return {"error": "Guild not found"}, 404
+
+    channels = [{"id": channel.id, "name": channel.name} for channel in guild.text_channels]
+    return {"channels": channels}, 200
+
+
+@flask_application.route('/set_channel', methods=['POST'])
+def set_channel():
+    data = request.json
+    global discord_channel_id
+    discord_channel_id = data['channel_id']
+    return {"message": "Channel updated"}, 200
+
+
 async def send_photo_to_discord(file_path):
     channel = client.get_channel(discord_channel_id)
 
@@ -28,7 +47,8 @@ async def send_photo_to_discord(file_path):
 
 
 discord_token = 'YOUR_DISCORD_APPLICATION_TOKEN'
-discord_channel_id = 12345  # id channel for posting
+discord_server_id = 12345
+discord_channel_id = 12345
 
 intents = discord.Intents.default()
 intents.messages = True
