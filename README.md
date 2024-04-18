@@ -14,6 +14,7 @@ Cross-Platform Meme Sharing Bot
 
 Начало Работы
 Чтобы начать работу, клонируйте репозиторий и следуйте инструкциям по настройке зависимостей и переменных окружения. Для запуска ботов необходимы действующие токены для Telegram и Discord, которые должны быть безопасно сохранены и использованы в конфигурации.
+
 git clone https://yourgithubrepo.com/yourusername/cross-platform-meme-bot.git
 cd cross-platform-meme-bot
 # Установка зависимостей и запуск
